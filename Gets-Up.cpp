@@ -1,4 +1,7 @@
 #include<stdio.h>
+#include<time.h>
+#include<stdlib.h>
+#include<windows.h>
 
 int part=0;
 
@@ -16,7 +19,8 @@ struct model {
 } man[2];
 
 bool chos() {
-	if(1/*something*/) {
+	srand(time(NULL));
+	if(rand()%2) {
 		return 0;
 	} else {
 		return 1;
@@ -44,47 +48,118 @@ int setAc(bool ac) {
 	} else if(man[ac].situ==1) {
 		printf("1.move");
 		p(14);
-		printf("2.change");
-		p(12);
 		if(man[ac].isBe==1) {
 			if(man[ac].aim==1) {
-				printf("3.hide");
-				p(14);
-				printf("4.fire");
-				re=2;
-				return re;
+				if(man[ac].loca==5) {
+					printf("2.hide");
+					p(12);
+					printf("3.fire");
+					p(14);
+					printf("4.change");
+					re=2;
+					return re;
+				} else {
+					printf("2.hide");
+					p(14);
+					printf("3.fire");
+					re=3;
+					return re;
+				}
 			} else {
-				printf("3.hide");
-				p(14);
-				re=3;
-				return re;
+				if(man[ac].loca==5) {
+					printf("2.hide");
+					p(12);
+					printf("3.aim");
+					p(14);
+					printf("4.change");
+					re=4;
+					return re;
+				} else {
+					printf("2.hide");
+					p(14);
+					printf("3.aim");
+					re=5;
+					return re;
+				}
 			}
-		} else {
+		} else {//wei bei m
 			if(man[ac].aim==1) {
-				printf("3.fire");
-				re=4;
-				return re;
+				if(man[ac].loca==5) {
+					printf("2.fire");
+					p(14);
+					printf("3.change");
+					re=6;
+					return re;
+				} else {
+					printf("2.fire");
+					re=7;
+					return re;
+				}
 			} else {
-				re=5;
-				return re;
+				if(man[ac].loca==5){
+					printf("2.aim");
+					p(15);
+					printf("3.change");
+					re=8;
+					return re;
+				}else{
+					printf("2.aim");
+					re=9;
+					return re;
+				}
 			}
 		}
 	}
 }
 
 void fight() {
+	
 	int i = setAc(chos());
+	
+	char a;
+	scanf("%c",a);
+	
+	switch(i){
+		case 0:
+			break;
+		case 1:
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		case 4:
+			break;
+		case 5:
+			break;
+		case 6:
+			break;
+		case 7:
+			break;
+		case 8:
+			break;
+		case 9:
+			break;
+		default:
+			printf("something wrong in fight() > switch");
+			break;
+	}
+	
 }
 
 int main() {
+	
 	man[0].has=man[1].has=0;
 	man[0].aim=man[1].aim=0;
 	man[0].isBe=man[1].isBe=0;
 	man[0].situ=man[1].situ=1;
 	man[0].loca=1;
 	man[1].loca=2;
+	//set for start
+	
 	while(man[0].situ!=0 && man[2].situ!=0) {
 		fight();
 	}
+	
 	return 0;
 }
