@@ -140,7 +140,7 @@ void fight() {
 		case 0:
 			if(a==1) {
 				man[ac].situ-=1;
-				printf("you are awake now\n");
+				printf("man[%d] is awake now\n",ac+1);
 			} else {
 				printf("a wrong input!!!\n");
 			}
@@ -149,8 +149,10 @@ void fight() {
 		case 1:
 			if(a==1) {
 				man[ac].situ-=2;
-				printf("you are free now\n");
-			} else {
+				printf("man[%d] is free now\n",ac+1);
+			} else if(a==2){
+				printf("man[%d] is asleep\n",ac+1);
+			}else{
 				printf("a wrong input!!!\n");
 			}
 			break;
@@ -291,8 +293,11 @@ void fight() {
 					man[ac].loca=b;
 					printf("place No. %d\n",b);
 					break;
-
 				case 2:
+					man[ac].aim=1;
+					printf("got aim\n");
+					break;
+				case 3:
 					if(ac==0) {
 						man[1].aim=0;
 					} else {
@@ -301,7 +306,7 @@ void fight() {
 					printf("safe\n");
 					break;
 
-				case 3:
+				case 4:
 					srand(time(NULL));
 					b=rand()%10;
 					b+=1;
@@ -317,7 +322,7 @@ void fight() {
 					printf("wepon No.%d\n",b);
 					break;
 
-				case 4:
+				case 5:
 					man[ac].situ+=1;
 					printf("asleep now\n");
 					break;
@@ -349,19 +354,12 @@ void fight() {
 					printf("place No. %d\n",b);
 					break;
 				case 2:
-					srand(time(NULL));
-					b=rand()%10;
-					b+=1;
-					for(;;) {
-						if(b==man[ac].has) {
-							b*=b;
-							b%=10;
-							b+=1;
-						} else {
-							break;
-						}
+					if(ac==0) {
+						man[0].isBe=man[1].aim=0;
+					} else {
+						man[0].aim=man[1].isBe=0;
 					}
-					printf("wepon No.%d\n",b);
+					printf("man[%d] is safe\n",ac+1);
 					break;
 
 				case 3:
@@ -499,8 +497,19 @@ void fight() {
 					man[ac].loca=b;
 					printf("place No. %d\n",b);
 					break;
-					
+
 				case 2:
+
+					if(ac==0) {
+						man[1].situ=0;
+						printf("man 1 died\n");
+					} else {
+						man[0].aim=0;
+						printf("man 2 died\n");
+					}
+					break;
+
+				case 3:
 					srand(time(NULL));
 					b=rand()%10;
 					b+=1;
@@ -516,7 +525,7 @@ void fight() {
 					printf("wepon No.%d\n",b);
 					break;
 
-				case 3:
+				case 4:
 					man[ac].situ+=1;
 					printf("asleep now\n");
 					break;
@@ -528,6 +537,41 @@ void fight() {
 			}
 			break;
 		case 9:
+			switch(a) {
+
+				case 1:
+					srand(time(NULL));
+					int b;
+					b=rand()%places;
+					b+=1;
+					for(;;) {
+						if(b==man[ac].loca) {
+							b*=b;
+							b%=places;
+							b+=1;
+						} else {
+							break;
+						}
+					}
+					man[ac].loca=b;
+					printf("place No. %d\n",b);
+					break;
+
+				case 2:
+					man[ac].aim=1;
+					printf("got aim\n");
+					break;
+
+				case 3:
+					man[ac].situ+=1;
+					printf("asleep now\n");
+					break;
+
+				default:
+					printf("a wrong input!!!\n");
+					break;
+
+			}
 			break;
 		default:
 			printf("something wrong in fight() > first switch\n");
