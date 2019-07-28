@@ -50,25 +50,29 @@ int setAc(bool ac) {
 		printf("2.jie	");
 		re=1;
 	} else if(man[ac].situ==1) {
-		printf("1.move   	");
+		printf("1.move   ");
 		//p(14);
 		if(man[ac].isBe==1) {
 			if(man[ac].aim==1) {
 				if(man[ac].loca==5) {
-					printf("2.hide		");
+					printf("2.hide	  ");
 					//p(12);
-					printf("3.fire		");
+					printf("3.fire	  ");
 					//p(14);
-					printf("4.change	");
+					printf("4.change  ");
 					//p(12);
-					printf("5.sleep		");
+					printf("5.sleep	  ");
+					//p(12);
+					printf("6.bang	  ");
 					re=2;
 				} else {
-					printf("2.hide		");
+					printf("2.hide	  ");
 					//p(14);
-					printf("3.fire		");
+					printf("3.fire	  ");
 					//p(14);
-					printf("4.sleep		");
+					printf("4.sleep	  ");
+					//p(12);
+					printf("")
 					re=3;
 				}
 			} else {
@@ -150,9 +154,10 @@ void fight() {
 			if(a==1) {
 				man[ac].situ-=2;
 				printf("man[%d] is free now\n",ac+1);
-			} else if(a==2){
+			} else if(a==2) {
+				man[ac].situ+=1;
 				printf("man[%d] is asleep\n",ac+1);
-			}else{
+			} else {
 				printf("a wrong input!!!\n");
 			}
 			break;
@@ -293,17 +298,19 @@ void fight() {
 					man[ac].loca=b;
 					printf("place No. %d\n",b);
 					break;
+
 				case 2:
-					man[ac].aim=1;
-					printf("got aim\n");
-					break;
-				case 3:
 					if(ac==0) {
 						man[1].aim=0;
 					} else {
 						man[0].aim=0;
 					}
 					printf("safe\n");
+					break;
+					
+				case 3:
+					man[ac].aim=1;
+					printf("got aim\n");
 					break;
 
 				case 4:
@@ -581,7 +588,7 @@ void fight() {
 }
 
 int main() {
-
+	
 	man[0].has=man[1].has=0;
 	man[0].aim=man[1].aim=0;
 	man[0].isBe=man[1].isBe=0;
