@@ -42,9 +42,12 @@ void p(int n) {
 	}
 }
 
-void pInfo(bool ac){
-	printf("man %d has a %s\n",ac,wep[man[ac].has]);
-	printf("man %d is now at %s\n",ac,place[man[ac].loca]);
+void pInfo(){
+	printf("man 0 has a %s\n",wep[man[0].has]);
+	p(10);
+	printf("man 1 has  \n",wep[man[0].has]);
+	
+	printf("man 0 is now at %s\n",ac,place[man[ac].loca]);
 	switch(man[ac].situ){
 		case 1:
 			printf("man %d is normol\n",ac);
@@ -92,9 +95,9 @@ int setAc_new(bool ac) {
 		isStart=1;
 	}
 
-	printf("now is man %d's turn\n\n",ac);
-	
 	pInfo(ac);
+	
+	printf("now is man %d's turn\n\n",ac);
 	
 	printf("please choose your action\n\n");
 
