@@ -43,42 +43,82 @@ void p(int n) {
 }
 
 void pInfo(){
-	printf("man 0 has a %s\n",wep[man[0].has]);
-	p(10);
-	printf("man 1 has  \n",wep[man[0].has]);
+	printf("man 0 has a %s",wep[man[0].has]);
+	p(19);
+	printf("man 1 has a %s\n",wep[man[1].has]);
 	
-	printf("man 0 is now at %s\n",ac,place[man[ac].loca]);
-	switch(man[ac].situ){
+	printf("man 0 is now at %s",place[man[0].loca]);
+	p(7);
+	printf("man 1 is now at %s\n",place[man[1].loca]);
+	
+	switch(man[0].situ){
 		case 1:
-			printf("man %d is normol\n",ac);
+			printf("man 0 is normol");
 			break;
 		case 2:
-	 		printf("man %d is asleep\n",ac);
+	 		printf("man 0 is asleep");
 			break;
 		case 3:
-			printf("man %d is trapped\n",ac);
+			printf("man 0 is trapped");
 			break;
 		case 4:
-			printf("man %d is asleep and trapped\n",ac);
+			printf("man 0 is asleep and trapped");
 			break;
 		default:
-			printf("something wrong in pInfo()\n");
+			printf("something wrong in pInfo() -> 0");
 			printf("please tell the developer");
-			printf("immediately as for the case of");
-			printf("emergency\n\n");
 			break;
 	}
-	if(man[ac].aim==0){
-		printf("man %d has not got an aim\n",ac);
-	}else{
-		printf("man %d has got an aim\n",ac);
+	
+	p(20);
+	
+	switch(man[1].situ){
+		case 1:
+			printf("man 1 is normol\n");
+			break;
+		case 2:
+	 		printf("man 1 is asleep\n");
+			break;
+		case 3:
+			printf("man 1 is trapped\n");
+			break;
+		case 4:
+			printf("man 1 is asleep and trapped\n");
+			break;
+		default:
+			printf("something wrong in pInfo()");
+			printf("please tell the developer\n\n");
+			break;
 	}
 	
-	if(man[ac].isBe==0){
-		printf("man %d is not an aim now\n",ac);
+	if(man[0].aim==0){
+		printf("man 0 has not got an aim");
 	}else{
-		printf("man %d is an aim now\n",ac);
+		printf("man 0 has got an aim");
 	}
+	
+	p(11);
+	
+	if(man[1].aim==0){
+		printf("man 1 has not got an aim\n");
+	}else{
+		printf("man 1 has got an aim\n");
+	}
+	
+	if(man[0].isBe==0){
+		printf("man 0 is not an aim now");
+	}else{
+		printf("man 0 is an aim now");
+	}
+	
+	p(12);
+	
+	if(man[1].isBe==0){
+		printf("man 1 is not an aim now\n");
+	}else{
+		printf("man 1 is an aim now\n");
+	}
+	
 	printf("\n");
 }
 
@@ -97,7 +137,7 @@ int setAc_new(bool ac) {
 
 	pInfo(ac);
 	
-	printf("now is man %d's turn\n\n",ac);
+	printf("now is man %d's turn\n",ac);
 	
 	printf("please choose your action\n\n");
 
@@ -165,19 +205,19 @@ int setAc_new(bool ac) {
 }
 
 void fight_new(){
-	//
+	//////////////////////////////
 	int ac=chos();
 	unsigned int re=setAc_new(ac);
-	//
+	//////////////////////////////
 	
-	//
+	///////////////
 	unsigned int a;
 	fflush(stdin);
 	scanf("%d",&a);
 	fflush(stdin);
-	//
+	///////////////
 	
-	//
+	//////////////////////
 	if(a>=3){
 		int i=re;
 		int x;
@@ -188,9 +228,9 @@ void fight_new(){
 			}
 		}
 	}
-	//
+	//////////////////////
 	
-	//
+	//////////////////////////////////////////////////////////////////
 	switch(re){
 		case -1:
 			printf("please stop to tell the developer immediately\n");
@@ -214,7 +254,7 @@ void fight_new(){
 		default:
 			break;
 	}
-	//
+	//////////////////////////////////////////////////////////////////
 }
 
 int main() {
