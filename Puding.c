@@ -32,47 +32,140 @@ struct model {
 	bool isBe;
 } man[2];
 
-void setAc_new(bool ac) {
+int setAc_new(bool ac) {
+
+	unsigned int re=1;
 	
-	unsigned short re=1;
-	unsigned short count=1;
-	
+	//count
+	unsigned short ct=1;
+
 	printf("now is man %d's turn\n",ac+1);
 	printf("please choose your action\n");
 	printf("1.move   ");
 	printf("2.sleep  ");
-	
+
 	if(man[ac].situ==2 || man[ac].situ==4) {
-		
+
 		printf("1.wake");
 		re=0;
-		
+
 	} else if(man[ac].situ==3) {
-		
-		printf("1.sleep  	");
-		//p(14);
-		printf("2.jie	");
+
+		printf("1. sleep   ");
+		printf("2.jie");
 		re=1;
+
+	} else if(man[ac].situ==1) {
+
+		printf("1. move   ");
+		re*=10;
+		//re=10
+
+		printf("2. sleep  ");
+		re+=1;
+		re*=10;
+		//re=110
 		
-	}else if(){
+		ct=3;
+
+		if(man[ac].isBe==1) {
+			printf("%d. hide   ",ct++);
+			re+=1;
+		}
+		re*=10;
+
+		if(man[ac].aim==1) {
+		    printf("%d. fire   ",ct++);
+			re+=1;
+		}
+		re*=10; 
 		
+		if(man[ac].loca==3||man[ac].loca==4){
+			printf("%d. change ",ct++);
+			re+=1;
+		}
+		
+		if(man[0].loca==man[ac].loca){
+			printf("%d. bang   ",ct++);
+			re+=1;
+		}
+		re*=10;
+		
+		if(man[ac].aim==0){
+			printf("%d. aim    ",ct++);
+			re+=1;
+		}
+		
+	} else {
+		printf("wrong!!! -> 110\n");
+		return -1;
 	}
-	
+
 	return re;
+
+}
+
+void fight_new(int re){
+	//
+	int ac=chos();
+	setAc_new(ac);
+	//
 	
+	//
+	unsigned int a;
+	fflush(stdin);
+	scanf("%d",&a);
+	fflush(stdin);
+	//
+	
+	//
+	if(a>=3){
+		int i=re;
+		int x;
+		for(x=1;x<=5;x++){
+			if(i%10!=1){
+				a+=1;
+				i/=10;
+			}
+		}
+	}
+	//
+	
+	//
+	switch(re){
+		case -1:
+			printf("please stop to tell the developer immediately\n");
+			printf("there is some thing wrong in setAc()\n\n");
+			break;
+			
+		case 0:
+			if(a==1){
+				man[ac].situ-=1;
+			}
+			break;
+			
+		case 1:
+			if(a==1){
+				man[ac]
+			}
+			break;
+			
+		default:
+			break;
+	}
+	//
 }
 
 int main() {
 	
 	
-	man[0].has=0;//short
-	man[0].aim=0;//bool
-	man[0].isBe=0;//bool
-	man[0].situ=1;//short
-	man[0].loca=1;//short
-	
-	setAc_new(0);
-	
 	
 	return 0;
 }
+
+ 	/*man[0].has=0;//short
+	man[0].aim=0;//bool
+	man[0].isBe=0;//bool
+	man[0].situ=1;//short
+	man[0].loca=1;//short*/
+
