@@ -63,3 +63,19 @@ move        sleep       hide     fire     change     bang     aim
 
 
 
+基本信息：
+
+
+unsigned short has;
+unsigned short loca;
+unsigned short situ;
+bool aim;
+bool isBe;
+
+
+
+
+
+
+
+
