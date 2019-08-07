@@ -41,8 +41,6 @@ int setAc_new(bool ac) {
 
 	printf("now is man %d's turn\n",ac+1);
 	printf("please choose your action\n");
-	printf("1.move   ");
-	printf("2.sleep  ");
 
 	if(man[ac].situ==2 || man[ac].situ==4) {
 
@@ -105,10 +103,10 @@ int setAc_new(bool ac) {
 
 }
 
-void fight_new(int re){
+void fight_new(){
 	//
 	int ac=chos();
-	setAc_new(ac);
+	unsigned int re=setAc_new(ac);
 	//
 	
 	//
@@ -146,7 +144,7 @@ void fight_new(int re){
 			
 		case 1:
 			if(a==1){
-				man[ac]
+				man[ac].situ-=2;
 			}
 			break;
 			
@@ -158,7 +156,17 @@ void fight_new(int re){
 
 int main() {
 	
+	man[0].has=man[1].has=0;
+	man[0].aim=man[1].aim=0;
+	man[0].isBe=man[1].isBe=0;
+	man[0].situ=man[1].situ=1;
+	man[0].loca=1;
+	man[1].loca=2;
+	//set for start
 	
+	while(man[0].situ!=0 && man[2].situ!=0) {
+		fight_new();
+	}
 	
 	return 0;
 }
