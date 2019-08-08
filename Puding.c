@@ -42,6 +42,12 @@ void p(int n) {
 	}
 }
 
+void stay(){
+	printf("\n\n");
+	printf("--------------------------------\n");
+	printf("请按任意键继续. . .");
+}
+
 void pInfo(){
 	printf("man 0 has a %s",wep[man[0].has]);
 	p(19);
@@ -129,11 +135,7 @@ int setAc_new(bool ac) {
 	//count
 	unsigned short ct=1;
 	
-	if(isStart==1){
-		printf("\n\n\n\n\n");
-	}else{
-		isStart=1;
-	}
+	system("cls");
 
 	pInfo(ac);
 	
@@ -148,7 +150,7 @@ int setAc_new(bool ac) {
 
 	} else if(man[ac].situ==3) {
 
-		printf("1. sleep   ");
+		printf("1. sleep    ");
 		printf("2.jie");
 		re=1;
 
@@ -210,6 +212,10 @@ void fight_new(){
 	unsigned int re=setAc_new(ac);
 	//////////////////////////////
 	
+	/////////////////
+	unsigned short b;
+	/////////////////
+	
 	///////////////
 	unsigned int a;
 	fflush(stdin);
@@ -233,28 +239,80 @@ void fight_new(){
 	//////////////////////////////////////////////////////////////////
 	switch(re){
 		case -1:
-			printf("please stop to tell the developer immediately\n");
 			printf("there is some thing wrong in setAc()\n\n");
+			printf("please stop to tell the developer immediately\n");
 			break;
 			
 		case 0:
 			if(a==1){
 				man[ac].situ-=1;
+				printf("you are awake\n\n");
 			}else{
-				printf("a wrong input!!\n\n");
+				printf("wrong input!!\n\n");
 			}
 			break;
 			
 		case 1:
 			if(a==1){
 				man[ac].situ-=2;
+				printf("escaped from ropes\n\n");
+			}else if(a==2){
+				man[ac].situ+=1;
+				man[ac].loca=ac;
+				man[ac].loca+=1;
+				printf("back to bed\n\n");
+			}else{
+				printf("wrong input!!!\n\n");
 			}
 			break;
 			
 		default:
+			
+			switch(a){
+				case 1:
+					srand(time(NULL));
+					b=rand()%7;
+					b+=1;
+					if(b==man[ac].loca){
+						b*=b;
+						b*=b;
+						b%=7;
+						b+=1;
+					}
+					man[ac].loca=b;
+					man[0].isBe=man[1].isBe=0;
+					man[0].aim=man[1].aim=0;
+					printf("at %s now\n\n",place[b]);
+					break;
+					
+				case 2:
+					man[ac].situ+=1;
+					man[ac].aim=0;
+					printf("asleep\n\n");
+					break;
+					
+				case 3:
+					break;
+				case 4:
+					break;
+				case 5:
+					break;
+				case 6:
+					break;
+				case 7:
+					break;
+				default :
+					printf("tell the developer wrong in fight_new");
+					printf(" -> first switch -> second switch\n\n");
+					break;
+			}
 			break;
 	}
 	//////////////////////////////////////////////////////////////////
+	
+	//
+	stay();
+	//
 }
 
 int main() {
