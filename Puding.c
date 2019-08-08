@@ -45,7 +45,8 @@ void p(int n) {
 void stay(){
 	printf("\n\n");
 	printf("--------------------------------\n");
-	printf("请按任意键继续. . .");
+	printf("请回车以继续. . .");
+	getchar();
 }
 
 void pInfo(){
