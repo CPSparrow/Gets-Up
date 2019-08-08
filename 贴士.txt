@@ -3,7 +3,7 @@
 places： 值为几就有几个地方
 
 situ=0: 没了
-situ=1: 活着
+situ=1: 正常
 situ=2: 打昏
 situ=3: 绑住
 situ=4: 打昏且绑住
