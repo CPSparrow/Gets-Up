@@ -43,10 +43,9 @@ void p(int n) {
 }
 
 void stay(){
-	printf("\n\n");
 	printf("--------------------------------\n");
-	printf("请回车以继续. . .");
-	getchar();
+	printf("2秒后跳转. . .\n");
+	Sleep(2000); 
 }
 
 void pInfo(){
@@ -131,19 +130,25 @@ void pInfo(){
 
 int setAc_new(bool ac) {
 
+	////////////////////////////////////////
 	unsigned int re=1;
 	
 	//count
 	unsigned short ct=1;
 	
-	system("cls");
+	//system("cls");
+	if(isStart==1){
+		printf("\n\n\n");
+	}else{
+		isStart=1;
+	}
 
 	pInfo(ac);
 	
 	printf("now is man %d's turn\n",ac);
-	
 	printf("please choose your action\n\n");
-
+	////////////////////////////////////////
+	
 	if(man[ac].situ==2 || man[ac].situ==4) {
 
 		printf("1.wake");
@@ -185,7 +190,7 @@ int setAc_new(bool ac) {
 			re+=1;
 		}
 		
-		if(man[0].loca==man[ac].loca){
+		if(man[0].loca==man[1].loca){
 			printf("%d. bang   ",ct++);
 			re+=1;
 		}
@@ -270,6 +275,8 @@ void fight_new(){
 		default:
 			
 			switch(a){
+				
+				//move
 				case 1:
 					srand(time(NULL));
 					b=rand()%7;
@@ -286,22 +293,71 @@ void fight_new(){
 					printf("at %s now\n\n",place[b]);
 					break;
 					
+				//sleep
 				case 2:
 					man[ac].situ+=1;
 					man[ac].aim=0;
 					printf("asleep\n\n");
 					break;
-					
+				
+				//hide	
 				case 3:
+					man[0].isBe=man[1].isBe=0;
+					man[0].aim=man[1].aim=0;
+					printf("out of aim\n\n");
 					break;
+				
+				//fire	
 				case 4:
+					if(ac==0){
+						man[1].situ=0;
+						printf("man 1 died\n\n");
+					}else{
+						man[0].situ=0;
+						printf("has man 0 killed\n\n");
+					}
+					return;
 					break;
+					
+				//change	
 				case 5:
+					srand(time(NULL));
+					b=rand()%10;
+					if(b==man[ac].loca){
+						b+=1;
+						b%=10;
+					}
+					man[ac].has=b;
+					printf("have %s\n\n",wep[b]);
 					break;
+				
+				//bang	
 				case 6:
+					if(ac==0){
+						man[1].situ+=2;
+						man[0].isBe=0;
+						man[1].aim=0;
+						printf("man 1 is trapped\n\n");
+					}else{
+						man[0].situ+=2;
+						man[1].isBe=0;
+						man[0].aim=0;
+						printf("man 1 is trapped\n\n");
+					}
 					break;
+					
 				case 7:
+					if(ac==0){
+						man[0].aim=1;
+						man[1].isBe=0;
+						printf("got a man 1\n\n");
+					}else{
+						man[1].aim=1;
+						man[0].isBe=0;
+						printf("got a man 1\n\n");
+					}
 					break;
+					
 				default :
 					printf("tell the developer wrong in fight_new");
 					printf(" -> first switch -> second switch\n\n");
@@ -314,6 +370,10 @@ void fight_new(){
 	//
 	stay();
 	//
+}
+
+void game(){
+	
 }
 
 int main() {
@@ -329,6 +389,10 @@ int main() {
 	while(man[0].situ!=0 || man[2].situ!=0) {
 		fight_new();
 	}
+	
+	/*/////
+	stay();
+	/////*/
 	
 	return 0;
 }
