@@ -1,0 +1,71 @@
+
+样例：
+//问题自己解决
+
+
+
+
+man 0 has a fits                   man 1 has a fits
+man 0 is now at man 0's home       man 1 is now at man 1's home
+man 0 is asleep                    man 1 is asleep
+man 0 has not got an aim           man 1 has not got an aim
+man 0 is not an aim now            man 1 is not an aim now
+
+now is man 1's turn
+please choose your action
+
+1.wake
+1
+you are awake
+
+--------------------------------
+2秒后跳转. . .
+
+
+
+man 0 has a fits                   man 1 has a fits
+man 0 is now at man 0's home       man 1 is now at man 1's home
+man 0 is asleep                    man 1 is normol
+man 0 has not got an aim           man 1 has not got an aim
+man 0 is not an aim now            man 1 is not an aim now
+
+now is man 1's turn
+please choose your action
+
+1. move   2. sleep  3. aim
+1
+at market 1 now
+
+--------------------------------
+2秒后跳转. . .
+
+
+
+man 0 has a fits                   man 1 has a fits
+man 0 is now at man 0's home       man 1 is now at market 1
+man 0 is asleep                    man 1 is normol
+man 0 has not got an aim           man 1 has not got an aim
+man 0 is not an aim now            man 1 is not an aim now
+
+now is man 1's turn
+please choose your action
+
+1. move   2. sleep  3. change 4. aim
+3
+out of aim
+
+--------------------------------
+2秒后跳转. . .
+
+
+
+man 0 has a fits                   man 1 has a fits
+man 0 is now at man 0's home       man 1 is now at market 1
+man 0 is asleep                    man 1 is normol
+man 0 has not got an aim           man 1 has not got an aim
+man 0 is not an aim now            man 1 is not an aim now
+
+now is man 0's turn
+please choose your action
+
+1.wake
