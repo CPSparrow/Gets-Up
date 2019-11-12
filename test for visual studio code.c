@@ -25,7 +25,23 @@ struct model {
 
 unsigned short isAction[2][15];//deal with
 
+int deal(const inPut){
+	int i,a=inPut-1,b=0;
+	for(i=1;i<=15;i++){
+		if(b==inPut){
+			break;
+		}
+		if(isAction[i-1]==1){
+			b++;
+		}else{
+			a++;
+		}
+	}
+	return a+1;
+}
+
 void fight_new_new(bool ac){
+
     //print actions
     int count=0;
     int i;
@@ -35,31 +51,86 @@ void fight_new_new(bool ac){
             count++;
             printf("%d.%c",count,actions[i]);
         }
-        
     }
-    const unsigned short=getch();
-    /*
-    
-    //interesting example
 
-    //not this// printf("re = %d\n",re);
+	//deal with the input
+    const unsigned short inPut=getch();
+    const unsigned short choice=deal(inPut);
 
-	if(a>=3){
-		unsigned int x,y=re,z=10000;
-		for(x=1;x<=4;x++){
-			if(y/z%10==0&&a>=x+2){
-				a+=1;
-				//printf("a++\n");
-				z/=10;
-			}
-		}
+	//deal with the choice
+	switch (choice)
+	{
+	case 1:
+		//code
+		break;
+	
+	case 2:
+		//code
+		break;
+	
+	case 3:
+		//code
+		break;
+	
+	case 4:
+		//code
+		break;
+	
+	case 5:
+		//code
+		break;
+	
+	case 6:
+		//code
+		break;
+	
+	case 7:
+		//code
+		break;
+	
+	case 8:
+		//code
+		break;
+	
+	case 9:
+		//code
+		break;
+	
+	case 10:
+		//code
+		break;
+	
+	case 11:
+		//code
+		break;
+	
+	case 12:
+		//code
+		break;
+	
+	case 13:
+		//code
+		break;
+	
+	case 14:
+		//code
+		break;
+	
+	case 15:
+		//code
+		break;
+	
+	default:
+		break;
 	}
-    */
-    //process choice
+}
 
+//begining sets
+void start(){
+	//code
 }
 
 int main(){
-
+	start();
     return 0;
 }
