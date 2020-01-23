@@ -27,7 +27,7 @@ void accident(int kind){
 }
 
 
-int getchoice(void){
+int getChoice(void){
 	unsigned short times=0;
 	while(1){
 		if(10==times){
