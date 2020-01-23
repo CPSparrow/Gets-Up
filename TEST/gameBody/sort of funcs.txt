@@ -1,0 +1,7 @@
+//不写参数
+//自己心里有点数即可
+isAlive( )
+choose( )
+putOptions( )
+getOption( )
+act( )
