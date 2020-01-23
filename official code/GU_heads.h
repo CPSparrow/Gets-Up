@@ -19,9 +19,9 @@
 
 #define PLAYER 1
 
-#define DATA_CHANGED 1
+#define DATA_CHANGED -1
 
-#define WRONG_INPUT 2
+#define WRONG_INPUT -2
 
 int getChoice(void);
 
@@ -51,6 +51,6 @@ int isAlive(void);
 
 void putMenu(void);
 
-void accident(void);
+void accident(int kind);
 
 void clean(void);
