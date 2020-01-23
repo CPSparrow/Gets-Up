@@ -1,21 +1,16 @@
 #include"GU_heads.h"
 
-//this part is to show how the main() works
-
 int main(){
     unsigned short result;
     putMenu();
-    //quit when 'q' or 'Q'
     while (QUIT!=(result=getChoice()))
     {
         switch (result){
-        //while type 1
         case GAME:
         	//printf("this is game\n");
             gameBody();
             break;
         
-        //2
         case INTRODUCE:
             //printf("this is info\n");
             putInfo();
@@ -30,7 +25,7 @@ int main(){
 		
 		//and this is about to be out of my ability
         default:
-        	accident();
+        	accident(DATA_CHANGED);
             break;
         }
         putMenu();
