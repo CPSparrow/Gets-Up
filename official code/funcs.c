@@ -12,13 +12,10 @@ void clean(void){
 void accident(int kind){
 	switch(kind){
 		case DATA_CHANGED:
-			
 			break;
 		case WRONG_INPUT:
-			
 			break;
 		default:
-			
 			break;
 	}
 	printf("press to quit\n");
