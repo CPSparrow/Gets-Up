@@ -1,5 +1,7 @@
 #include<stdio.h>
 #include<stdbool.h>
+#include<windows.h>
+#include<stdlib.h>
 
 #define QUIT 4
 
@@ -7,17 +9,21 @@
 
 #define INTRODUCE 2
 
-#define CHANGECOLOR 3
+#define CHANGE_COLOR 3
 
-#define TOOMUCH "too much wrong input"
+#define TOO_MUCH "too much wrong input"
 
-#define TYPEAINT "please type a proper int like 1 or 2"
+#define TYPE_A_INT "please type a proper int like 1 or 2"
 
 #define COMPUTER 0
 
 #define PLAYER 1
 
-int getChoice(char* toomuch,char* typeaint,int game,int introduce,int changeColor,int quit);
+#define DATA_CHANGED -1
+
+#define WRONG_INPUT -2
+
+int getChoice(void);
 
 void gameBody(void);
 
@@ -45,5 +51,6 @@ int isAlive(void);
 
 void putMenu(void);
 
-void accident(void);
+void accident(int kind);
 
+void clean(void);

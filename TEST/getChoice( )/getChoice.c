@@ -28,43 +28,6 @@ void clean(void){
 	}
 }
 
-/*int getChoice(void){
-    unsigned short times;
-    unsigned int choice,ch;
-    times=choice=ch=0;
-    while(1){
-        if(times==10){
-            printf("%s\n",TOOMUCH);
-            return QUIT;
-        }else{
-            times++;
-            if((ch=scanf("%d",&choice))!=1){
-                char hide;
-                hide=getchar();
-                if('C'==hide){
-                	clean();
-                    return CHANGECOLOR;
-                }else if('q'==hide||'Q'==hide){
-                	clean();
-                    return QUIT;
-                }else{
-                	clean();
-                    printf("%s\n",TYPEAINT);
-                    continue;
-                }
-            }else{
-            	//later here should be more
-                if(GAME!=choice&&INTRODUCE!=choice){
-                    printf("%s\n",TYPEAINT);
-                }else{
-                	clean();
-                    return choice;
-                }
-            }
-        }
-    }
-}*/
-
 int new_getchoice(void){
 	unsigned short times=0;
 	while(1){
