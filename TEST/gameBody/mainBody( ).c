@@ -25,7 +25,7 @@ void clean(void) {
 
 #define PLAYER 1
 
-#define TYPE_A_INT "please type a proper int like 1 or 2"
+#define TYPE_A_INT "请输入如1，2的整数"
 struct model {
 	unsigned short has;
 	unsigned short loca;
@@ -45,26 +45,31 @@ bool isAction[2][16];
 
 void beginningSet(void);
 
+int maxOptions(const bool who);
+
 void putOptions(void);
 
-int getOption(bool person);
+int getOption(const bool person);
 
-void act(option,who) {
-	puts("act\n");
-}
+void act(const int option,const bool person);
 
 int main(void) {
 	beginningSet();
+	puts("欢迎来到 gets-up ,如果您想要退出，请输入q\n"); 
 	do {
 		bool who;
 		unsigned int option;
 		srand(time(NULL));
 		who=rand()%2;
+		who=1;
 		if(who) {
 			putOptions();
 		}
+		//puts("this is getOptions");
+		//getchar();
 		option=getOption(who);
-		//act(option,who);
+		printf("option = %d\n",option);
+		act(option,who);
 	} while(0!=man[0].situ&&0!=man[1].situ);
 }
 
@@ -101,7 +106,7 @@ void putOptions(void) {
 	}
 }
 
-int maxOptions(bool who) {
+int maxOptions(const bool who) {
 	int index,count;
 	for(index=0,count=0; index<16; index++) {
 		if(isAction[who][index]) {
@@ -111,7 +116,7 @@ int maxOptions(bool who) {
 	return count;
 }
 
-int getOption(bool person) {
+int getOption(const bool person) {
 	//PLAYER
 	if(person) {
 		unsigned short times=0;
@@ -138,7 +143,7 @@ int getOption(bool person) {
 								if(option>=10&&option<=max) {
 									return option;
 								} else {
-									puts("请输入一个在范围内的整数\n"); 
+									puts("请输入一个在选择范围内的整数"); 
 									continue;
 								}
 							} else {
@@ -170,7 +175,14 @@ int getOption(bool person) {
 			}
 		}
 	}else{
-		//computer choose
+		//random algorithm
+		int max = maxOptions(person);
+		srand(time(NULL));
+		int options = rand()%max+1;
+		return options;
 	}
 }
 
+void act(const int option,const bool who){
+	printf("this is who\n\n");
+}
