@@ -6,42 +6,46 @@
 #include<stdbool.h>
 #include<windows.h>
 #include<time.h>
-
-void accident(const char* kind) {
-	puts(kind);
-	printf("Çë°´ÈÎÒâ¼üÒÔÍË³ö\n");
-	getchar();
-	exit(EXIT_FAILURE);
-}
+#include"definations.h"
 
 void clean(void) {
 	while(getchar()!='\n') {
 		continue;
 	}
 }
-//which is done
 
 #define COMPUTER 0
 
 #define PLAYER 1
 
-#define TYPE_A_INT "ÇëÊäÈëÈç1£¬2µÄÕûÊý"
+#define TYPE_A_INT "ÇëÊäÈëÒ»¸öÔÚÑ¡Ôñ·¶Î§ÄÚµÄÕûÊý"
+//which is done
+
+#define PRESS_TO_EXIT "Çë°´ÈÎÒâ¼üÒÔÍË³ö\n"
+
+void accident(const char* kind) {
+	puts(kind);
+	printf(PRESS_TO_EXIT);
+	getchar();
+	exit(EXIT_FAILURE);
+}
+
+
 struct model {
 	unsigned short has;
 	unsigned short loca;
 	unsigned short situ;
 	bool aim;
 	bool warm;
-} man[2];
+} man[NUM_PLAYERS];
 
-const char *action[16]= {
-	"È­Ì×","Ð¡µ¶","Éä»÷","»ð¼ýÍ²","ÄëÑ¹","¿ªÅÚ","¶ã¿ª","ÒÆ¶¯","»»ÎäÆ÷","Àë¿ªÌ¹¿Ë","µ½taºóÃæ","Ë¯Ãß","´òÔÎ","°óÆðÀ´","ËÕÐÑ","½â¿ª"
-	//0       1       2       3      4     5       6     7        8        9          10       11     12     13       14     15
+const char *action[NUM_MAX_OPTIONS]= {
+	ACTION_KNIFE,ACTION_SHOOT,ACTION_CRUSH,ACTION_FIRE,ACTION_HIDE,ACTION_MOVE,ACTION_CHANGE,ACTION_OUT_OF_TANK,ACTION_SLEEP,ACTION_HIT,ACTION_TRAP,ACTION_WAKE,ACTION_OUT_OF_TRAP
 };
 
 
 
-bool isAction[2][16];
+bool isAction[NUM_PLAYERS][NUM_MAX_OPTIONS];
 
 void beginningSet(void);
 
@@ -55,13 +59,12 @@ void act(const int option,const bool person);
 
 int main(void) {
 	beginningSet();
-	puts("»¶Ó­À´µ½ gets-up ,Èç¹ûÄúÏëÒªÍË³ö£¬ÇëÊäÈëq\n"); 
+	puts("ï¿½ï¿½Ó­ï¿½ï¿½ï¿½ï¿½ gets-up ,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½Ë³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½q\n");
 	do {
 		bool who;
 		unsigned int option;
 		srand(time(NULL));
-		who=rand()%2;
-		who=1;
+		who=rand()%NUM_PLAYERS;
 		if(who) {
 			putOptions();
 		}
@@ -70,13 +73,13 @@ int main(void) {
 		option=getOption(who);
 		printf("option = %d\n",option);
 		act(option,who);
-	} while(0!=man[0].situ&&0!=man[1].situ);
+	} while(man[COMPUTER].situ!=false&&man[PLAYER].situ!=false);
 }
 
 void beginningSet(void) {
-	man[COMPUTER].aim=man[PLAYER].aim = man[0].has=man[PLAYER].has = man[0].warm=man[PLAYER].warm=0;
-	man[COMPUTER].loca=0;
-	man[PLAYER].loca=1;
+	man[COMPUTER].aim=man[PLAYER].aim = man[COMPUTER].has=man[PLAYER].has = man[COMPUTER].warm=man[PLAYER].warm=false;
+	man[COMPUTER].loca=LOCA_COMPUTER;
+	man[PLAYER].loca=LOCA_PLAYER;
 	man[COMPUTER].situ=man[PLAYER].situ=1;
 
 	int a,b;
@@ -90,8 +93,8 @@ void beginningSet(void) {
 
 void putOptions(void) {
 	int j,k;
-	puts("ÏÖÔÚÊÇÄãµÄ»ØºÏÁË£¬ÇëÔÚÊäÈëÑ¡ÔñÖ®ºó»Ø³µ\n");
-	puts("ÕâÊÇÄã¿ÉÑ¡µÄ²Ù×÷:\n");
+	puts("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä»Øºï¿½ï¿½Ë£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½Ö®ï¿½ï¿½Ø³ï¿½\n");
+	puts("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¡ï¿½Ä²ï¿½ï¿½ï¿½:\n");
 	for(j=0,k=0; j<16; j++) {
 		if(isAction[PLAYER][j]) {
 			k++;
@@ -143,7 +146,7 @@ int getOption(const bool person) {
 								if(option>=10&&option<=max) {
 									return option;
 								} else {
-									puts("ÇëÊäÈëÒ»¸öÔÚÑ¡Ôñ·¶Î§ÄÚµÄÕûÊý"); 
+									puts("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½Î§ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½");
 									continue;
 								}
 							} else {
@@ -156,7 +159,7 @@ int getOption(const bool person) {
 							if(option<=max) {
 								return option;
 							} else {
-								puts("ÇëÊäÈëÒ»¸öÔÚ·¶Î§ÄÚµÄÕûÊý\n");
+								puts("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ú·ï¿½Î§ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½\n");
 								continue;
 							}
 						} else {
@@ -170,11 +173,11 @@ int getOption(const bool person) {
 						continue;
 					}
 				}
-			}else{
+			} else {
 				accident("DATA_CHANGED\n");
 			}
 		}
-	}else{
+	} else {
 		//random algorithm
 		int max = maxOptions(person);
 		srand(time(NULL));
@@ -183,6 +186,23 @@ int getOption(const bool person) {
 	}
 }
 
-void act(const int option,const bool who){
-	printf("this is who\n\n");
+int preProcessing(const int option,const bool who){
+	unsigned short index;
+	unsigned short check = 0;
+	for(index = 0; index<16; index++) {
+		if(isAction[who][index]) {
+			check++;
+		}
+		if(check == option) {
+			break;
+		}
+	}
+	index++;
+	return index;
 }
+
+void act(const int option,const bool who) {
+	//unsigned short choice=preProcessing(option,who);
+	puts("act\n");
+}
+
